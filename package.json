@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/EbenSwart/WPR381_ZIP_Application/issues"
   },
-  "homepage": "https://github.com/EbenSwart/WPR381_ZIP_Application#readme"
+  "homepage": "https://github.com/EbenSwart/WPR381_ZIP_Application#readme",
+  "dependencies": {
+    "git": "^0.1.5"
+  }
 }
