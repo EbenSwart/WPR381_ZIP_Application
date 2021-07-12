@@ -1,20 +1,45 @@
-let FilePath = "Hello" //the file path of the folder should be stored here.
+let procedure = "";
+let FilePath = "";
 
-console.log("Do wou want to extract or compress a folder?");
-console.log("1. Extract \n2. Compress");
-
-let option = "";
-
-process.stdin.setEncoding("utf8");
-process.stdin.on("Enter your option: ", (answer) => {
-    option = answer;
-
-    if (option == "1") {
-        console.log("Where is the compressed folder stored?");
-    }else if(option == "2"){
-        console.log("Where is the folder you wish to compress stored?");
-    }else  {
-        console.log("Incorrect option chosen");
-    }
+const readLine = require('readline');
+const reader = readLine.createInterface({
+    input: process.stdin,
+    output: process.stdout
 });
+
+reader.question(
+    "Please choose a function to do (Enter only the number): \n 1. Extract"+
+    "\n 2. Compress \n Your choice: ", (answer) => {
+        procedure = answer;  
+        if (procedure === "1") {
+            Extract();
+        }else if(procedure === "2"){
+            Compress();
+        }else{
+            Error();
+        }
+    });
+
+    function Error(){
+        console.log("Please select an vallid option!");
+    }
+
+    function Compress() {
+        reader.question("Please enter the filepath\n", (getFilePath) => {
+            FilePath = getFilePath;
+            PrintFile();
+        })
+    }
+
+    function Extract() {
+        reader.question("Please enter the filepath\n", (getFilePath) => {
+            FilePath = getFilePath;
+            PrintFile();
+        })
+    }
+
+    function PrintFile(){
+        console.log("The file path is: " + FilePath);
+    }
+
 
