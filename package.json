@@ -1,0 +1,20 @@
+{
+  "name": "WPR381_ZIP_Application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EbenSwart/WPR381_ZIP_Application.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EbenSwart/WPR381_ZIP_Application/issues"
+  },
+  "homepage": "https://github.com/EbenSwart/WPR381_ZIP_Application#readme"
+}
