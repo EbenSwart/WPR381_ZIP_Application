@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/EbenSwart/WPR381_ZIP_Application#readme",
   "dependencies": {
+    "archiver": "^5.3.0",
     "git": "^0.1.5"
   }
 }
