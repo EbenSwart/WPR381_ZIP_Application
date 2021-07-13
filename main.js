@@ -2,7 +2,8 @@ const decompress = require('decompress');
 var AdmZip = require('adm-zip');
 
 let procedure = "";
-let FilePath = "";
+let SourcePath = "";
+let TargetPath = "";
 
 const readLine = require('readline');
 const reader = readLine.createInterface({
@@ -27,18 +28,28 @@ reader.question(
         console.log("Please select an vallid option!");
     }
 
-    function Compress() {
-        reader.question("Please enter the filepath\n", (getFilePath) => {
-            FilePath = getFilePath;
-            Zip(FilePath);
+    function GetSource() {
+        reader.question("Please enter the location of the file:", (sourcePath) => {
+            SourcePath = sourcePath;
+        });
+    }
+
+    function GetTargetPath() {
+        reader.question("Enter the location you want to save the file:", (targetPath) => {
+            TargetPath = targetPath;
         })
     }
 
+    function Compress() { 
+        GetSource();
+        GetTargetPath();
+        Zip();
+    }
+
     function Extract() {
-        reader.question("Please enter the filepath\n", (getFilePath) => {
-            FilePath = getFilePath;
-            Unzip(FilePath);
-        })
+        GetSource();
+        GetTargetPath();
+        Unzip();
     }
 
     // ################ Unzip Folder ######################
