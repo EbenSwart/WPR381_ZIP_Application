@@ -4,8 +4,11 @@ var AdmZip = require('adm-zip');
 let procedure = "";
 let SourcePath = "";
 let TargetPath = "";
+let toThisProcedure = 0;
+
 
 const readLine = require('readline');
+const { exit } = require('process');
 const reader = readLine.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -28,32 +31,53 @@ reader.question(
         console.log("Please select an vallid option!");
     }
 
-    let GetSource = new Promise(function(myResolve,  myReject){
-        myResolve();
-        myReject();
-    });
+
+    async function GetSource(){
+        reader.question("Enter Source:", (sPath) => {
+            SourcePath = sPath;
+            GetTarget();
+        })
+    }
+
+    async function GetTarget(){
+        reader.question("Target:", (tPath) => {
+            TargetPath = tPath;
+            if (toThisProcedure  == 2) {
+                Zip(SourcePath, TargetPath);
+            }else if (toThisProcedure == 1){
+                Unzip(SourcePath, TargetPath);
+            }else{
+                Error();
+            }
+        })
+    }
 
     function Compress(){
-        GetSource();
-        console.log("Source path:  " + SourcePath);
-        console.log("Target path:  " + TargetPath);
-        //Zip(SourcePath, TargetPath);
+        toThisProcedure = 2;
+        GetSource().then();      
+    }
+
+    function Extract(){
+        toThisProcedure = 1;
+        GetSource().then();      
     }
 
     // ################ Unzip Folder ######################
-    function Unzip(Source, Target){
+    async function Unzip(Source, Target){
         (async () => {
             const files = await decompress(Source, Target);
             console.log("File was extracted");
+            exit(0);
         })();
     }
      //################ Unzip Folder ######################
 
      //############### Zip Folder #########################
-     function Zip(Source, Target){
+     async function Zip(Source, Target){
         var zip = new AdmZip();
         zip.addLocalFolder(Source);
-        zip.writeZip(Target);
+        zip.writeZip(Target + ".zip");
         console.log("File was compressed");
+        exit(0);
      }
      //############### Zip Folder #########################
