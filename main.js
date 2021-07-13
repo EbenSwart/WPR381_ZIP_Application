@@ -28,20 +28,16 @@ reader.question(
         console.log("Please select an vallid option!");
     }
 
-    function GetPaths(){
-            reader.question("Enter the source path:", sPath =>{
-                SourcePath = sPath;
-            })
-            reader.question("Enter the target path:", tPath => {
-                TargetPath = tPath;
-            })
-    }
+    let GetSource = new Promise(function(myResolve,  myReject){
+        myResolve();
+        myReject();
+    });
 
     function Compress(){
-        async () => {
-            GetPaths();
-        }
-        Zip(SourcePath, TargetPath);
+        GetSource();
+        console.log("Source path:  " + SourcePath);
+        console.log("Target path:  " + TargetPath);
+        //Zip(SourcePath, TargetPath);
     }
 
     // ################ Unzip Folder ######################
