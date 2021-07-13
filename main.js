@@ -28,43 +28,36 @@ reader.question(
         console.log("Please select an vallid option!");
     }
 
-    function GetSource() {
-        reader.question("Please enter the location of the file:", (sourcePath) => {
-            SourcePath = sourcePath;
-        });
+    function GetPaths(){
+            reader.question("Enter the source path:", sPath =>{
+                SourcePath = sPath;
+            })
+            reader.question("Enter the target path:", tPath => {
+                TargetPath = tPath;
+            })
     }
 
-    function GetTargetPath() {
-        reader.question("Enter the location you want to save the file:", (targetPath) => {
-            TargetPath = targetPath;
-        })
-    }
-
-    function Compress() { 
-        GetSource();
-        GetTargetPath();
-        Zip();
-    }
-
-    function Extract() {
-        GetSource();
-        GetTargetPath();
-        Unzip();
+    function Compress(){
+        async () => {
+            GetPaths();
+        }
+        Zip(SourcePath, TargetPath);
     }
 
     // ################ Unzip Folder ######################
-    function Unzip(FilePath){
+    function Unzip(Source, Target){
         (async () => {
-            const files = await decompress("D:\\Documents\\ZipThisFolder.zip", "D:\\Documents\\DecompressedFolder\\");
+            const files = await decompress(Source, Target);
             console.log("File was extracted");
         })();
     }
      //################ Unzip Folder ######################
+
      //############### Zip Folder #########################
-     function Zip(FilePath){
+     function Zip(Source, Target){
         var zip = new AdmZip();
-        zip.addLocalFolder(FilePath);
-        zip.writeZip("D:\\Documents\\CompressedFolder\\Zipped.zip");
+        zip.addLocalFolder(Source);
+        zip.writeZip(Target);
         console.log("File was compressed");
      }
      //############### Zip Folder #########################
