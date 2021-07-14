@@ -55,6 +55,12 @@ reader.question(
         })
     }
 
+    //This is to get a recursive list of all files in the sub directories
+    walk(process.env.HOME, function(err, results) {
+        if (err) throw err;
+        console.log(results);
+      });
+
     //This call the functions required to zip a folder/file
     function Compress(){
         toThisProcedure = 2;
